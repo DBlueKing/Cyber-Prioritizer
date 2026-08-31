@@ -5,7 +5,12 @@ Motor de análisis de riesgo dinámico que combina Cadenas de Markov, inteligenc
 **Propuesta de Valor: Cyber-Prioritizer no busca reemplazar a NVD, CVSS o EPSS, sino actuar como un complemento orquestador en conjunto a ellas. Toma estas métricas técnicas aisladas y las traduce en decisiones ejecutivas, logrando una reducción directa en costos operativos y horas-hombre al evitar el parcheo innecesario de vulnerabilidades sin probabilidad real de explotación.**
 
 ### Creado por **Lukas Benjamín Ahubert Lennon**.
+---
+- El EPSS entrega una probabilidad estática a 30 días, pero no modela la dinámica temporal ni los flujos de detección y mitigación bajo restricciones presupuestarias cambiantes. Las Cadenas de Markov permiten proyectar la trayectoria temporal del riesgo y optimizar el subconjunto óptimo de parches (K) en función de la capacidad operativa real del equipo, algo que el puntaje aislado de EPSS no resuelve por sí solo.
 
+- En un entorno simulado de 68 activos heterogéneos y una restricción de 10 parches, el enfoque estocástico logró mitigar un 30.4% del riesgo global frente al 25.7% del modelo estático tradicional, alcanzando un 18% más de eficiencia en mitigación por parche aplicado.
+
+- Es un MVP académico y de código abierto diseñado para demostrar la viabilidad metodológica del modelado estocástico. La arquitectura de microservicios y colas asíncronas para escala masiva está en desarrollo para la versión enterprise de IKUBERT.
 ---
 
 ## La Metodología

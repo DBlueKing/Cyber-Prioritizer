@@ -50,3 +50,24 @@ Para organizaciones corporativas que requieran integrar este motor de priorizaci
 Para adquirir una licencia comercial exclusiva, solicitar integración corporativa o consultoría especializada en optimización de procesos y modelamiento de riesgos digitales, las consultas se gestionan a través de **IKUBERT**.
 
 📧 *Contacto:* Contact@ikubert.com
+
+---
+
+# 🗺️ Roadmap y Próximas Mejoras (Versión 2.0)
+
+El desarrollo continuo de **Cyber-Prioritizer** contempla las siguientes optimizaciones para la próxima iteración del framework:
+
+### 1. Escalabilidad para Inventarios Masivos
+*   **Objetivo:** Optimizar el pipeline de ingesta y procesamiento (`DataIngestor` y motor de Markov) para soportar y calcular eficientemente inventarios de nivel *Enterprise* superiores a los 1.000 activos simultáneos.
+*   **Impacto:** Reducción de tiempos de cómputo en el Test A/B y optimización del uso de memoria al cruzar data con las APIs de inteligencia de amenazas.
+
+### 2. Estabilidad Determinista en el Baseline (CVSS)
+*   **Objetivo:** Garantizar la reproducibilidad bit a bit en los empates de severidad del modelo estático. 
+*   **Detalle Técnico:** Actualmente, la métrica CVSS genera múltiples empates (ej. varios activos con 9.8 o 10.0), los cuales el método `sort_values` de Pandas resuelve de forma no determinista por defecto. Para la v2, las funciones `_curva_mitigacion`, `_hosts_parcheados` y `_ventaja_pct` implementarán el ordenamiento dual: `sort_values(["cvss_score", "riesgo_dinamico"], ascending=False)`.
+*   **Impacto:** Asegura que el comparador baseline (Estrategia A) se comporte de manera 100% predecible en cada ejecución del ciclo.
+
+### 3. Optimización de Visualización (Mapa de Riesgo)
+*   **Objetivo:** Refactorizar el renderizado del Gráfico 4 (Mapa de Riesgo de Activos) para resolver la superposición de etiquetas de texto (*overplotting*) en clústeres de alta densidad.
+*   **Impacto:** Mejora en la legibilidad ejecutiva del dashboard cuando se analizan infraestructuras complejas con riesgo altamente concentrado.
+
+---

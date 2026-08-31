@@ -2,7 +2,7 @@
 
 Motor de análisis de riesgo dinámico que combina Cadenas de Markov, inteligencia de amenazas en tiempo real (NVD, EPSS, CISA KEV) y mapeo táctico (MITRE ATT&CK) para optimizar la gestión de vulnerabilidades bajo restricciones de presupuesto operativo.
 
-**Propuesta de Valor: Cyber-Prioritizer no busca reemplazar a NVD, CVSS o EPSS, sino actuar como un complemento orquestador. Toma estas métricas técnicas aisladas y las traduce en decisiones ejecutivas, logrando una reducción directa en costos operativos y horas-hombre al evitar el parcheo innecesario de vulnerabilidades sin probabilidad real de explotación.**
+**Propuesta de Valor: Cyber-Prioritizer no busca reemplazar a NVD, CVSS o EPSS, sino actuar como un complemento orquestador en conjunto a ellas. Toma estas métricas técnicas aisladas y las traduce en decisiones ejecutivas, logrando una reducción directa en costos operativos y horas-hombre al evitar el parcheo innecesario de vulnerabilidades sin probabilidad real de explotación.**
 
 ### Creado por **Lukas Benjamín Ahubert Lennon**.
 

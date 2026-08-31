@@ -71,3 +71,11 @@ El desarrollo continuo de **Cyber-Prioritizer** contempla las siguientes optimiz
 ---
 
 # Copyright (C) 2026
+
+---
+Palabras clave
+Gestión de vulnerabilidades; priorización basada en riesgo; cadenas de Markov; EPSS; CVSS; KEV; MITRE ATT&CK; NIST CSF 2.0; ISO/IEC 27005; optimización bajo restricción; CISO; SecOps; GestiónDeRiesgos; ThreatIntel.
+
+Keywords 
+Vulnerability management; risk-based prioritization; Markov chains; EPSS; CVSS; KEV; MITRE ATT&CK; NIST CSF 2.0; ISO/IEC 27005; constrained optimization; CISO; security operations; risk management; threat intelligence.
+

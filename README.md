@@ -25,8 +25,15 @@ La priorización tradicional basada únicamente en la severidad técnica (CVSS) 
 
 Para evaluar el modelo de forma inmediata sin configuración de entorno local:
 1. Dirígete a la carpeta `/notebooks`.
-2. Abre el archivo `cyber_prioritizer_demo.ipynb` en Google Colab o Jupyter.
+2. Abre el archivo `Cyber_Prioritizer.ipynb` en Google Colab o Jupyter.
 3. Ejecuta las celdas para procesar la matriz simulada o cargar el inventario CSV de tu propia organización.
+
+
+## Plantilla de Inventariado
+
+1. Dirígete a la carpeta `/Data`.
+2. Abre el archivo `Formulario_Inventario.xlsx`.
+3. Dentro del archivo hay parametros que mantienen homogeneidad respecto al llenado e instrucciones.
 
 ---
 
@@ -42,4 +49,4 @@ Para organizaciones corporativas que requieran integrar este motor de priorizaci
 
 Para adquirir una licencia comercial exclusiva, solicitar integración corporativa o consultoría especializada en optimización de procesos y modelamiento de riesgos digitales, las consultas se gestionan a través de **IKUBERT**.
 
-📧 *Contacto:* ahubert@ikubert.com
+📧 *Contacto:* Contact@ikubert.com

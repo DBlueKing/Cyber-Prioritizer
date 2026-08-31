@@ -51,7 +51,7 @@ Para organizaciones corporativas que requieran integrar este motor de priorizaci
 
 Para adquirir una licencia comercial exclusiva, solicitar integración corporativa o consultoría especializada en optimización de procesos y modelamiento de riesgos digitales, las consultas se gestionan a través de **IKUBERT**.
 
-📧 *Contacto:* Contact@ikubert.com
+📧 *Contacto:* Contact@ikubert.com  | IKUBERT
 
 ---
 
@@ -73,3 +73,5 @@ El desarrollo continuo de **Cyber-Prioritizer** contempla las siguientes optimiz
 *   **Impacto:** Mejora en la legibilidad ejecutiva del dashboard cuando se analizan infraestructuras complejas con riesgo altamente concentrado.
 
 ---
+
+# Copyright (C) 2026

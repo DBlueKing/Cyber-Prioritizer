@@ -1,0 +1,757 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><style>body{font-family:Segoe UI,Arial,sans-serif;max-width:900px;margin:2em auto;line-height:1.5;color:#1a1a2e}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:6px 10px;text-align:left}th{background:#16213e;color:#fff}h1,h2{color:#16213e}</style></head><body><h1>Informe Estratégico de Mitigación de Riesgos Tecnológicos</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Organización</strong></td>
+<td>Empresa Simulada S.A.</td>
+</tr>
+<tr>
+<td><strong>Fecha de emisión</strong></td>
+<td>2026-08-31</td>
+</tr>
+<tr>
+<td><strong>Clasificación</strong></td>
+<td>TLP:AMBER — Uso interno</td>
+</tr>
+<tr>
+<td><strong>Horizonte de análisis</strong></td>
+<td>30 días</td>
+</tr>
+<tr>
+<td><strong>Marcos de referencia</strong></td>
+<td>NIST CSF 2.0 · MITRE ATT&amp;CK · CVSS v3.x · EPSS (FIRST.org) · KEV (CISA)</td>
+</tr>
+<tr>
+<td><strong>Metodología</strong></td>
+<td>Priorización estocástica mediante Cadenas de Markov</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. Resumen Ejecutivo</h2>
+<p>La superficie de ataque evaluada comprende <strong>68 activos</strong> con
+vulnerabilidades confirmadas, bajo una restricción presupuestaria de
+<strong>10 intervenciones de parcheo</strong> en el ciclo actual.</p>
+<p>La priorización tradicional por severidad técnica (CVSS) asigna recursos a las
+vulnerabilidades más <em>graves en teoría</em>; el modelo estocástico propuesto los asigna
+a las más <em>probables de ser explotadas contra el negocio</em>. Con el mismo presupuesto:</p>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>CVSS (tradicional)</th>
+<th>Markov (propuesta)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Riesgo dinámico inicial</td>
+<td>17.6676</td>
+<td>17.6676</td>
+</tr>
+<tr>
+<td>Riesgo residual tras 10 parches</td>
+<td>13.1248</td>
+<td>12.2990</td>
+</tr>
+<tr>
+<td>Reducción de riesgo lograda</td>
+<td>25.7%</td>
+<td><strong>30.4%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusión ejecutiva:</strong> la estrategia propuesta evita un <strong>6.3%
+más de riesgo residual</strong> que el método tradicional, sin inversión adicional. En
+términos de eficiencia de capital, cada parche del plan propuesto rinde más unidades
+de reducción de riesgo por peso invertido — el mismo principio de optimización bajo
+restricción que gobierna cualquier cartera de inversiones.</p>
+<h2>2. Alcance y Metodología</h2>
+<p>El análisis integra cuatro fuentes de evidencia por cada vulnerabilidad: la severidad
+técnica intrínseca (CVSS v3.x, NVD/NIST), la probabilidad de explotación observada
+en el ecosistema real (EPSS, FIRST.org, actualizado diariamente), la confirmación de
+explotación activa (catálogo KEV de CISA: los CVE listados reciben un piso de
+probabilidad, pues la explotación deja de ser predicción) y la criticidad de
+negocio del activo definida por la organización, ponderada por su exposición de red.
+Sobre esta base, cada activo se
+modela como una cadena de Markov de cuatro estados (Seguro, Detectado, Explotado,
+Mitigado) cuya matriz de transición incorpora la tasa diaria de explotación derivada
+del EPSS. La proyección a 30 días entrega la probabilidad de compromiso, que
+ponderada por la criticidad de negocio produce el <strong>Riesgo Dinámico</strong> — la métrica
+única de priorización de este informe.</p>
+<h2>3. Plan de Priorización de Parcheo (Top 10)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">prioridad</th>
+<th style="text-align: left;">host</th>
+<th style="text-align: left;">cve_id</th>
+<th style="text-align: left;">criticidad</th>
+<th style="text-align: right;">cvss_score</th>
+<th style="text-align: right;">epss_score</th>
+<th style="text-align: left;">kev</th>
+<th style="text-align: right;">riesgo_dinamico</th>
+<th style="text-align: left;">sla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">P1</td>
+<td style="text-align: left;">VPN-PA-01</td>
+<td style="text-align: left;">CVE-2024-3400</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.99999</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.586104</td>
+<td style="text-align: left;">P1 — 72 horas</td>
+</tr>
+<tr>
+<td style="text-align: left;">P2</td>
+<td style="text-align: left;">ADC-CTX-01</td>
+<td style="text-align: left;">CVE-2023-4966</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">0.99999</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.586104</td>
+<td style="text-align: left;">P1 — 72 horas</td>
+</tr>
+<tr>
+<td style="text-align: left;">P3</td>
+<td style="text-align: left;">VPN-PULSE-01</td>
+<td style="text-align: left;">CVE-2019-11510</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.99999</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.586104</td>
+<td style="text-align: left;">P2 — 7 días</td>
+</tr>
+<tr>
+<td style="text-align: left;">P4</td>
+<td style="text-align: left;">LB-F5-01</td>
+<td style="text-align: left;">CVE-2022-1388</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">0.99958</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.563119</td>
+<td style="text-align: left;">P2 — 7 días</td>
+</tr>
+<tr>
+<td style="text-align: left;">P5</td>
+<td style="text-align: left;">FW-EDGE-01</td>
+<td style="text-align: left;">CVE-2023-20198</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.99571</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.535759</td>
+<td style="text-align: left;">P2 — 7 días</td>
+</tr>
+<tr>
+<td style="text-align: left;">P6</td>
+<td style="text-align: left;">SRV-VPN-01</td>
+<td style="text-align: left;">CVE-2018-13379</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">0.99999</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.514182</td>
+<td style="text-align: left;">P3 — 30 días</td>
+</tr>
+<tr>
+<td style="text-align: left;">P7</td>
+<td style="text-align: left;">SRV-WEB-03</td>
+<td style="text-align: left;">CVE-2017-5638</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">0.99999</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.514182</td>
+<td style="text-align: left;">P3 — 30 días</td>
+</tr>
+<tr>
+<td style="text-align: left;">P8</td>
+<td style="text-align: left;">SRV-MAIL-01</td>
+<td style="text-align: left;">CVE-2021-26855</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">0.99996</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.503428</td>
+<td style="text-align: left;">P3 — 30 días</td>
+</tr>
+<tr>
+<td style="text-align: left;">P9</td>
+<td style="text-align: left;">SRV-WEB-01</td>
+<td style="text-align: left;">CVE-2021-41773</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">0.99992</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.497076</td>
+<td style="text-align: left;">P3 — 30 días</td>
+</tr>
+<tr>
+<td style="text-align: left;">P10</td>
+<td style="text-align: left;">SRV-MAIL-02</td>
+<td style="text-align: left;">CVE-2022-41082</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.9997</td>
+<td style="text-align: left;">SÍ ⚠</td>
+<td style="text-align: right;">0.482568</td>
+<td style="text-align: left;">P3 — 30 días</td>
+</tr>
+</tbody>
+</table>
+<p>Los SLA se asignan por posición en el ranking de riesgo: P1 (72 horas) para los dos
+primeros activos, P2 (7 días) hasta la posición 5, P3 (30 días) para el resto.</p>
+<h2>4. Fichas de Acción por Activo</h2>
+<p>Como CISO con formación en Ingeniería Industrial, entiendo la ciberseguridad como la <strong>optimización de la función de pérdida bajo restricciones severas</strong> (tiempo, recursos de ingeniería y continuidad de negocio). El modelo de Markov ha priorizado estos 10 activos por su alta probabilidad de transición a un estado comprometido y su criticidad. </p>
+<p>A continuación, presento la ficha técnica de optimización y mitigación para cada vector de riesgo crítico expuesto en el perímetro.</p>
+<hr />
+<h3>1. VPN-PA-01 — CVE-2024-3400</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Aplicar inmediatamente la actualización de hotfix de PAN-OS proporcionada por Palo Alto Networks para la versión afectada.</li>
+<li><em>Mitigación temporal (si el parche no es inmediato):</em> Deshabilitar temporalmente la característica GlobalProtect o la telemetría de dispositivos (Device Telemetry) mediante la configuración del sistema, ya que el vector de inyección depende de esta función.</li>
+<li>Verificar en los logs del firewall la ausencia de creación de archivos arbitrarios en <code>/var/appweb/sslvpn/dynamic/</code> o directorios similares.</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Un atacante obtendría control total (nivel root) del perímetro de red, permitiéndole interceptar todo el tráfico corporativo, moverse lateralmente hacia la red interna sin resistencia y comprometer la confidencialidad de las comunicaciones y credenciales de toda la organización.</li>
+</ol>
+<hr />
+<h3>2. ADC-CTX-01 — CVE-2023-4966</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0004 (Escalación de Privilegios) — T1068 (Explotación para Escalación de Privilegios).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Actualizar el firmware de NetScaler ADC y NetScaler Gateway a las versiones corregidas (13.1-49.13, 12.1-65.25, etc.).</li>
+<li><em>Mitigación temporal:</em> Invalidar todas las sesiones activas existentes (<code>kill icr_sessions</code> y reiniciar el servicio AAA) y revocar las cookies de sesión emitidas antes del parche, ya que la vulnerabilidad permite el robo de memoria de sesión (Citrix Bleed).</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Exposición masiva de sesiones de usuario activas. Los atacantes pueden secuestrar identidades corporativas sin necesidad de credenciales, accediendo a aplicaciones publicadas y datos sensibles de clientes y empleados con la misma autoridad que el usuario legítimo.</li>
+</ol>
+<hr />
+<h3>3. VPN-PULSE-01 — CVE-2019-11510</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Aplicar el parche oficial de Pulse Secure (versiones 8.2R12.1, 8.3R7.1, 9.0R3.4 o superiores).</li>
+<li>Forzar el reseteo de todas las contraseñas de usuarios y administradores que hayan transitado por esta VPN, así como la invalidación de certificados de sesión.</li>
+<li><em>Mitigación temporal:</em> Restringir el acceso por IP de origen (whitelisting estricto) en el firewall perimetral hacia la interfaz de administración y portal de usuarios de la VPN.</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Compromiso histórico de credenciales y lectura de archivos del sistema (incluyendo archivos de configuración con contraseñas en texto plano). Pérdida total de la confianza en el perímetro de acceso remoto, obligando a una auditoría forense y potencial notificación regulatoria por brecha de datos.</li>
+</ol>
+<hr />
+<h3>4. LB-F5-01 — CVE-2022-1388</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Actualizar BIG-IP a las versiones 16.1.2.2, 15.1.5.1, 14.1.4.6, 13.1.5 o posteriores.</li>
+<li><em>Mitigación temporal:</em> Bloquear el acceso a la interfaz de administración de iControl REST desde redes externas/no confiables mediante reglas de control de acceso (Port Lockdown o packet filters en el propio BIG-IP). Asegurar que la gestión solo sea accesible desde una VLAN de administración aislada.</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Bypass completo de la autenticación de gestión. Un atacante puede ejecutar comandos arbitrarios en el balanceador, alterando el enrutamiento del tráfico, interceptando transacciones financieras o interrumpiendo totalmente la disponibilidad de los servicios críticos expuestos al público.</li>
+</ol>
+<hr />
+<h3>5. FW-EDGE-01 — CVE-2023-20198</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Actualizar Cisco IOS XE a una versión que contenga la corrección definitiva para CVE-2023-20198 y CVE-2023-20273.</li>
+<li><em>Mitigación temporal:</em> Deshabilitar las características de servidor HTTP/HTTPS (Web UI) en los equipos IOS XE expuestos a Internet (<code>no ip http server</code> / <code>no ip http secure-server</code>).</li>
+<li>Auditar el sistema en busca de usuarios locales no autorizados o implantes en el sistema de archivos (<code>show users</code>, verificar modificaciones en flash).</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Control absoluto del dispositivo perimetral con privilegios de root. El atacante puede desplegar persistencia a nivel de firmware, desviar tráfico corporativo (Man-in-the-Middle) y colapsar las operaciones de red de toda la compañía.</li>
+</ol>
+<hr />
+<h3>6. SRV-VPN-01 — CVE-2018-13379</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Actualizar FortiOS a las versiones 6.0.5, 5.6.8, 5.4.13 o superiores. </li>
+<li><em>Mitigación temporal:</em> Deshabilitar el portal web de SSL VPN (<code>config vpn ssl settings</code> -&gt; <code>status disable</code>) y migrar temporalmente el acceso remoto al cliente Tunel VPN si el servicio web no es estrictamente necesario, o restringir accesos por geolocalización/IP en el firewall upstream.</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Descarga no autenticada de archivos de sistema, incluyendo el archivo con las credenciales cifradas de los usuarios de la VPN. Permite la suplantación masiva de identidad de empleados y contratistas, comprometiendo la red interna desde las terminales de confianza.</li>
+</ol>
+<hr />
+<h3>7. SRV-WEB-03 — CVE-2017-5638</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Actualizar Apache Struts a la versión 2.3.32 o 2.5.10.1 (o versiones soportadas actuales).</li>
+<li><em>Mitigación temporal:</em> Cambiar el analizador Multipart utilizado (por ejemplo, implementando un wrapper personalizado) o desplegar una regla específica en el WAF (Web Application Firewall) que inspeccione la cabecera <code>Content-Type</code> en busca de patrones OGNL maliciosos (<code>#cmd=</code>, <code>#context</code>, etc.).</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Ejecución remota de comandos en el servidor del portal de clientes. Si el servidor carece de segmentación adecuada, un atacante puede pivotar hacia bases de datos de clientes, provocando la exfiltración masiva de PII (Información de Identificación Personal), multas regulatorias severas y daño reputacional irreversible.</li>
+</ol>
+<hr />
+<h3>8. SRV-MAIL-01 — CVE-2021-26855</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública / SSRF).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Aplicar los parches de actualización acumulativos de Microsoft Exchange (marzo de 2021 o posteriores).</li>
+<li><em>Mitigación temporal:</em> Utilizar el script de mitigación de Microsoft (EOMT.ps1) o configurar reglas de bloqueo en el firewall de aplicaciones/IIS para restringir las peticiones HTTP sospechosas que explotan el proxy SSRF (<code>/ecp/</code> y cabeceras <code>Cookie: X-BEResource</code>).</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Acceso no autorizado al servidor de correo corporativo. Permite el robo masivo de comunicaciones confidenciales, secretos comerciales y la utilización de cuentas legítimas para realizar campañas de suplantación de identidad (Phishing) dirigidas a clientes y proveedores.</li>
+</ol>
+<hr />
+<h3>9. SRV-WEB-01 — CVE-2021-41773</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0001 (Acceso Inicial) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Actualizar Apache HTTP Server a la versión 2.4.51 o superior (la versión 2.4.49 introdujo la falla y 2.4.50 tuvo un parche incompleto).</li>
+<li><em>Mitigación temporal:</em> Revisar la configuración de Apache para asegurar que todas las directrices <code>Require</code> estén configuradas explícitamente en <code>denied</code> para directorios fuera de la raíz web, y deshabilitar explícitamente los scripts CGI si no son necesarios (<code>Options -ExecCGI</code>).</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Exposición de archivos del sistema operativo fuera del directorio web y posible ejecución remota de código si CGI está habilitado. Permite al atacante comprometer la integridad del portal público de clientes y utilizarlo como cabeza de playa para escalar privilegios en la red de servidores de plataforma.</li>
+</ol>
+<hr />
+<h3>10. SRV-MAIL-02 — CVE-2022-41082</h3>
+<ol>
+<li><strong>MITRE ATT&amp;CK</strong>: TA0002 (Ejecución) — T1190 (Explotar Aplicación Pública).</li>
+<li><strong>Plan de Mitigación Técnico</strong>:</li>
+<li>Aplicar la actualización de seguridad de Microsoft correspondiente a noviembre de 2022 o posterior para Exchange Server.</li>
+<li><em>Mitigación temporal:</em> Implementar las reglas de reescritura de URL en IIS recomendadas por Microsoft para bloquear solicitudes maliciosas dirigidas a PowerShell backend que aprovechan la vulnerabilidad de deserialización (vulnerabilidad gemela de ProxyNotShell, CVE-2022-41040).</li>
+<li><strong>Impacto al Negocio si es Explotado</strong>: Ejecución remota de código a través de PowerShell con los privilegios del servicio de Exchange. Permite a actores maliciosos instalar puertas trasera persistentes (webshells), exfiltrar libretas de direcciones, leer correos electrónicos y comprometer la continuidad de las operaciones administrativas y de colaboración de la empresa.</li>
+</ol>
+<h2>5. Riesgo Aceptado Temporalmente (58 activos diferidos)</h2>
+<p>Los siguientes activos quedan fuera del presupuesto del ciclo actual. Esta es una
+decisión de <strong>aceptación temporal de riesgo</strong>, no una omisión:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">host</th>
+<th style="text-align: left;">cve_id</th>
+<th style="text-align: left;">criticidad</th>
+<th style="text-align: right;">riesgo_dinamico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">SRV-MFT-01</td>
+<td style="text-align: left;">CVE-2023-34362</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.471978</td>
+</tr>
+<tr>
+<td style="text-align: left;">CAM-EXT-01</td>
+<td style="text-align: left;">CVE-2021-36260</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.467704</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-APP-01</td>
+<td style="text-align: left;">CVE-2021-44228</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.437055</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-APP-02</td>
+<td style="text-align: left;">CVE-2021-44228</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.437055</td>
+</tr>
+<tr>
+<td style="text-align: left;">NAS-QNAP-01</td>
+<td style="text-align: left;">CVE-2021-28799</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.43023</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-ERP-01</td>
+<td style="text-align: left;">CVE-2020-14882</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.429979</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-VC-01</td>
+<td style="text-align: left;">CVE-2021-21972</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.391603</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-RDP-01</td>
+<td style="text-align: left;">CVE-2019-0708</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.359927</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-IAM-01</td>
+<td style="text-align: left;">CVE-2021-40539</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.352994</td>
+</tr>
+<tr>
+<td style="text-align: left;">GW-CTX-02</td>
+<td style="text-align: left;">CVE-2019-19781</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.351662</td>
+</tr>
+<tr>
+<td style="text-align: left;">ADC-CTX-02</td>
+<td style="text-align: left;">CVE-2023-3519</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.326213</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-VPN-02</td>
+<td style="text-align: left;">CVE-2018-13379</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.308509</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-DC-01</td>
+<td style="text-align: left;">CVE-2020-1472</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.304526</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-DC-02</td>
+<td style="text-align: left;">CVE-2020-1472</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.304526</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-WEB-04</td>
+<td style="text-align: left;">CVE-2021-41773</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.298246</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-FILE-02</td>
+<td style="text-align: left;">CVE-2017-0144</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.296554</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-WEB-02</td>
+<td style="text-align: left;">CVE-2023-25690</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.282013</td>
+</tr>
+<tr>
+<td style="text-align: left;">RTR-GPON-01</td>
+<td style="text-align: left;">CVE-2018-10561</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.271656</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-WIKI-01</td>
+<td style="text-align: left;">CVE-2022-26134</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.262233</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-APP-03</td>
+<td style="text-align: left;">CVE-2021-44228</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.262233</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-CMS-01</td>
+<td style="text-align: left;">CVE-2018-7600</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.252919</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-ERP-02</td>
+<td style="text-align: left;">CVE-2019-2725</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.244936</td>
+</tr>
+<tr>
+<td style="text-align: left;">MOB-GER-02</td>
+<td style="text-align: left;">CVE-2021-30883</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.219715</td>
+</tr>
+<tr>
+<td style="text-align: left;">MOB-GER-01</td>
+<td style="text-align: left;">CVE-2021-1048</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.219715</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LEGACY-03</td>
+<td style="text-align: left;">CVE-2019-0708</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.215956</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-FIN-05</td>
+<td style="text-align: left;">CVE-2021-34527</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.215573</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-FIN-06</td>
+<td style="text-align: left;">CVE-2021-34527</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.215573</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-VTA-03</td>
+<td style="text-align: left;">CVE-2021-34527</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.215573</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-WIKI-02</td>
+<td style="text-align: left;">CVE-2023-22515</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.214799</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-RRHH-01</td>
+<td style="text-align: left;">CVE-2022-30190</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.205493</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-FILE-03</td>
+<td style="text-align: left;">CVE-2020-0796</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.190953</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-ADM-01</td>
+<td style="text-align: left;">CVE-2021-4034</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.179461</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-FILE-04</td>
+<td style="text-align: left;">CVE-2017-0144</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.177932</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-WEB-05</td>
+<td style="text-align: left;">CVE-2023-25690</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.169208</td>
+</tr>
+<tr>
+<td style="text-align: left;">CAM-INT-03</td>
+<td style="text-align: left;">CVE-2021-33044</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.163705</td>
+</tr>
+<tr>
+<td style="text-align: left;">CAM-INT-02</td>
+<td style="text-align: left;">CVE-2021-36260</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.163696</td>
+</tr>
+<tr>
+<td style="text-align: left;">TEL-VOIP-02</td>
+<td style="text-align: left;">CVE-2020-3161</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.14552</td>
+</tr>
+<tr>
+<td style="text-align: left;">TEL-VOIP-01</td>
+<td style="text-align: left;">CVE-2020-3161</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.14552</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-DB-02</td>
+<td style="text-align: left;">CVE-2016-6662</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.144821</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-DB-01</td>
+<td style="text-align: left;">CVE-2016-6662</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.144821</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LNX-02</td>
+<td style="text-align: left;">CVE-2023-4911</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.132276</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LNX-01</td>
+<td style="text-align: left;">CVE-2022-0847</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.132276</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-DOCKER-01</td>
+<td style="text-align: left;">CVE-2022-0492</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.132276</td>
+</tr>
+<tr>
+<td style="text-align: left;">AP-WIFI-01</td>
+<td style="text-align: left;">CVE-2021-20090</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.119755</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-DEV-03</td>
+<td style="text-align: left;">CVE-2021-3156</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.112646</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-DEV-02</td>
+<td style="text-align: left;">CVE-2021-3156</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.112646</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LEGACY-02</td>
+<td style="text-align: left;">CVE-2014-0160</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.107978</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LEGACY-01</td>
+<td style="text-align: left;">CVE-2014-0160</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.107978</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-VTA-04</td>
+<td style="text-align: left;">CVE-2021-34527</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.107786</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-RRHH-02</td>
+<td style="text-align: left;">CVE-2022-30190</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.102746</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-DEV-04</td>
+<td style="text-align: left;">CVE-2021-4034</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.0897305</td>
+</tr>
+<tr>
+<td style="text-align: left;">WKS-TI-01</td>
+<td style="text-align: left;">CVE-2016-5195</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.0814969</td>
+</tr>
+<tr>
+<td style="text-align: left;">PRN-RRHH-02</td>
+<td style="text-align: left;">CVE-2021-39238</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.0194947</td>
+</tr>
+<tr>
+<td style="text-align: left;">PRN-FIN-01</td>
+<td style="text-align: left;">CVE-2021-39238</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.0194947</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LNX-03</td>
+<td style="text-align: left;">CVE-2021-33909</td>
+<td style="text-align: left;">Media</td>
+<td style="text-align: right;">0.010873</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LNX-05</td>
+<td style="text-align: left;">CVE-2023-32233</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.00728206</td>
+</tr>
+<tr>
+<td style="text-align: left;">PLC-OT-01</td>
+<td style="text-align: left;">CVE-2021-22779</td>
+<td style="text-align: left;">Alta</td>
+<td style="text-align: right;">0.00622923</td>
+</tr>
+<tr>
+<td style="text-align: left;">SRV-LNX-04</td>
+<td style="text-align: left;">CVE-2022-2588</td>
+<td style="text-align: left;">Baja</td>
+<td style="text-align: right;">0.00326171</td>
+</tr>
+</tbody>
+</table>
+<p>El riesgo residual aceptado asciende a <strong>12.2990</strong> unidades de riesgo. Se recomienda: (a) aplicar mitigaciones compensatorias de bajo costo (segmentación de red, reglas WAF, monitoreo reforzado) sobre estos activos, y (b) re-evaluar la priorización en el próximo ciclo con EPSS actualizado, dado que la probabilidad de explotación es dinámica.</p>
+<h2>6. Análisis Detallado, Conclusiones y Hoja de Ruta</h2>
+<h3>6.1 Análisis Detallado de Hallazgos</h3>
+<p>El análisis sobre el parque tecnológico de 68 activos revela una concentración crítica de riesgo en la infraestructura perimetral y de acceso remoto. El modelo dinámico (Markov), que pondera la probabilidad de explotación a 30 días junto con la criticidad del negocio, demuestra que el riesgo real no se correlaciona linealmente con la severidad teórica (CVSS).</p>
+<p><strong>Patrones observados y familias de CVE:</strong>
+*   <strong>Perímetro e Infraestructura Crítica:</strong> El tope del ranking está dominado por vulnerabilidades de ejecución remota de código y bypass de autenticación en pasarelas corporativas y dispositivos de borde (VPN-PA-01, ADC-CTX-01, VPN-PULSE-01, LB-F5-01, FW-EDGE-01). Estos activos combinan puntuaciones CVSS máximas (9.4 a 10.0) con valores EPSS extremadamente altos ($\approx 0.999$), resultando en las probabilidades de explotación a 30 días más elevadas del inventario ($&gt;0.56$).
+*   <strong>Divergencia CVSS vs EPSS/Markov:</strong> Se identifican desviaciones significativas que justifican el uso del modelo predictivo. Casos como <strong>CAM-EXT-01</strong> (CVE-2021-36260, criticidad Media) presentan un CVSS de 9.8 pero un riesgo dinámico elevado (0.467) impulsado por una alta probabilidad de explotación (0.779). Inversamente, servidores de bases de datos como <strong>SRV-DB-01/02</strong> (CVE-2016-6662, criticidad Alta y CVSS 9.8) quedan relegados al puesto 49 debido a un EPSS bajo (0.677) y menor probabilidad de explotación a corto plazo (0.206).
+*   <strong>Concentración de Riesgo:</strong> Los primeros 11 activos del ranking (todos de criticidad Alta, abarcando pasarelas, servidores web, de correo y transferencia de ficheros) representan una fracción desproporcionada del riesgo total inicial (17.6676), siendo liderados por <strong>VPN-PA-01</strong> (CVE-2024-3400) con un riesgo dinámico individual de 0.5861.</p>
+<hr />
+<h3>6.2 Conclusiones</h3>
+<ol>
+<li><strong>Exposición Perimetral Inmediata:</strong> Los primeros 5 activos del ranking (<strong>VPN-PA-01, ADC-CTX-01, VPN-PULSE-01, LB-F5-01 y FW-EDGE-01</strong>) concentran la mayor probabilidad de compromiso externo, con métricas de riesgo dinámico superiores a 0.53 y una probabilidad de explotación que supera el 53% en los próximos 30 días.</li>
+<li><strong>Ineficiencia del Modelo Tradicional (CVSS):</strong> El Test A/B demuestra que priorizar exclusivamente bajo criterios estáticos de severidad (CVSS) deja un riesgo residual de <strong>13.1248</strong>, mientras que la priorización basada en el modelo estocástico de Markov reduce el riesgo residual a <strong>12.2990</strong>.</li>
+<li><strong>Eficiencia Cuantificada:</strong> La aplicación del modelo predictivo propuesto otorga una <strong>ventaja analítica y de mitigación del 6.3%</strong> frente al enfoque tradicional, optimizando la asignación de recursos limitados.</li>
+<li><strong>Validación del Presupuesto Operativo:</strong> Con una capacidad limitada a 10 parches iniciales, el uso del ranking dinámico asegura que el esfuerzo de remediación se concentre estrictamente en los vectores de ataque con mayor probabilidad real de materialización en el corto plazo.</li>
+</ol>
+<hr />
+<h3>6.3 Hoja de Ruta de Resolución</h3>
+<p>El plan de remediación se estructura en tres fases estrictas basadas en el orden de riesgo dinámico del ranking, asignando contenciones para los activos diferidos:</p>
+<ul>
+<li>
+<p><strong>Fase 1: Ventana de 72 Horas (Mitigación de Borde y Críticos Superiores)</strong></p>
+<ul>
+<li><em>Alcance (Top 5 del ranking):</em> <ul>
+<li><code>VPN-PA-01</code> (CVE-2024-3400)</li>
+<li><code>ADC-CTX-01</code> (CVE-2023-4966)</li>
+<li><code>VPN-PULSE-01</code> (CVE-2019-11510)</li>
+<li><code>LB-F5-01</code> (CVE-2022-1388)</li>
+<li><code>FW-EDGE-01</code> (CVE-2023-20198)</li>
+</ul>
+</li>
+<li><em>Acción:</em> Aplicación de parches de emergencia o mitigaciones del fabricante (mitigación de ceros días / configuraciones de bloqueo perimetral).</li>
+<li><em>Medidas compensatorias para diferidos en esta ventana:</em> Activación de reglas de bloqueo estricto en WAF/IPS y restricción de acceso geográfico/IP para los servicios expuestos no parcheados inmediatamente.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 2: Ventana de 7 Días (Servicios Internos Críticos y Exposición Media-Alta)</strong></p>
+<ul>
+<li><em>Alcance (Posiciones 6 a 15 del ranking):</em> <ul>
+<li><code>SRV-VPN-01</code>, <code>SRV-WEB-03</code>, <code>SRV-MAIL-01</code>, <code>SRV-WEB-01</code>, <code>SRV-MAIL-02</code>, <code>SRV-MFT-01</code>, <code>CAM-EXT-01</code>, <code>SRV-APP-01</code>, <code>SRV-APP-02</code>, <code>NAS-QNAP-01</code>, <code>SRV-ERP-01</code>.</li>
+</ul>
+</li>
+<li><em>Acción:</em> Despliegue masivo de actualizaciones para vulnerabilidades con EPSS cercano a 1.0 (Log4Shell, servidores de correo y transferencia de ficheros).</li>
+<li><em>Medidas compensatorias para diferidos:</em> Microsegmentación de red para aislar segmentos vulnerables, desactivación temporizada de servicios no esenciales (ej. paneles de cámaras externos) y monitoreo reforzado mediante SIEM/EDR enfocado en técnicas de movimiento lateral y ejecución de código.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 3: Ventana de 30 Días (Resto del Inventario y Remediación Estructural)</strong></p>
+<ul>
+<li><em>Alcance (Posiciones 16 a 68 del ranking):</em> <ul>
+<li>Resto de activos identificados con riesgo dinámico decreciente (desde <code>SRV-VC-01</code> hasta <code>SRV-LNX-04</code>).</li>
+</ul>
+</li>
+<li><em>Acción:</em> Parcheo sistemático de estaciones de trabajo, servidores secundarios, entornos de desarrollo y dispositivos de red de baja criticidad.</li>
+<li><em>Medidas compensatorias:</em> Aplicación de parches virtuales vía reglas de mitigación perimetral y control de cuentas privilegiadas (PAM) en los sistemas operativos legados o pendientes de actualización.</li>
+</ul>
+</li>
+<li>
+<p><strong>Criterio de Re-evaluación:</strong> 
+    Se ejecutará un ciclo de escaneo de validación posterior a cada fase (T+72h, T+7d, T+30d) recalculando el modelo de Markov. El cierre de cada ticket de vulnerabilidad estará condicionado a que el riesgo dinámico residual del activo retorne a umbrales aceptables por la política de la organización (&lt; 0.05).</p>
+</li>
+</ul>
+<h2>7. Supuestos, Limitaciones y Próximos Pasos</h2>
+<p><strong>Supuestos del modelo:</strong> probabilidad diaria de detección p_d = 0.1 y de mitigación
+p_m = 0.05 base, moduladas por un factor de capacidad operativa según tipo de activo;
+el EPSS se interpreta como probabilidad de explotación a 30 días y se convierte a tasa
+diaria equivalente; la criticidad de negocio se pondera Alta = 1.0, Media = 0.6,
+Baja = 0.3, multiplicada por el factor de exposición (Internet 1.0 / DMZ 0.85 /
+Interna 0.7); los CVE en catálogo KEV reciben un piso de EPSS efectivo de 0.9.</p>
+<p><strong>Limitaciones:</strong> el modelo no captura dependencias entre activos (cadenas de ataque
+multi-host) ni la variación temporal del EPSS dentro del horizonte; los factores por
+tipo de activo son estimaciones documentadas, no aprendidas de datos; la asignación de
+activos a pilares NIST CSF es una aproximación de la función de negocio expuesta.</p>
+<p><strong>Próximos pasos recomendados:</strong> re-ejecutar la priorización semanalmente con EPSS
+actualizado; realizar análisis de sensibilidad sobre p_d y p_m; validar
+retrospectivamente el ranking contra explotaciones observadas (backtesting).</p>
+<hr />
+<p><em>Informe generado automáticamente por el framework de priorización estocástica de
+vulnerabilidades (Cadenas de Markov + NVD/EPSS/KEV + MITRE ATT&amp;CK). Los indicadores
+cuantitativos provienen directamente del modelo matemático; ningún valor numérico
+es generado por IA.</em></p></body></html>

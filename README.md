@@ -59,6 +59,10 @@ Para adquirir una licencia comercial exclusiva, solicitar integración corporati
 📧 *Contacto:* Contact@ikubert.com  | IKUBERT
 
 ---
+*Artículo:* https://ikubert.com/foro/cyber-prioritizer-priorizacion-estocastica-vulnerabilidades/
+---
+
+---
 
 # 🗺️ Roadmap y Próximas Mejoras (Versión 2.0)
 
